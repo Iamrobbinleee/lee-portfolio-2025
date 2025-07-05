@@ -340,30 +340,87 @@
         <div class="bg-black p-8 rounded-xl shadow-sm animate-fade-in">
           <h3 class="text-xl font-bold mb-6 text-center header_color">Tech Stacks</h3>
           <div class="space-y-6">
-            <div v-for="skill in technicalSkills" :key="skill.name">
+            <div class="row">
+              <div class="col-md-12">
+                <h2 class="header_color" style="font-size: 18px; font-weight: bold;">Front-end</h2>
+              </div>
+              <div class="col-md-12">
+                  <div v-for="list in frontEnd" :key="list.name">
+                    <div class="flex justify-between mb-1">
+                      <span style="padding-bottom: 5px;" class="font-medium">{{ list.id }}. {{ list.name }}</span>
+                    </div>
+                  </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <h2 class="header_color" style="font-size: 18px; font-weight: bold;">Back-end</h2>
+              </div>
+              <div class="col-md-12">
+                  <div v-for="list in backEnd" :key="list.name">
+                    <div class="flex justify-between mb-1">
+                      <span style="padding-bottom: 5px;" class="font-medium">{{ list.id }}. {{ list.name }}</span>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <h2 class="header_color" style="font-size: 18px; font-weight: bold;">Project Management</h2>
+              </div>
+              <div class="col-md-12">
+                  <div v-for="list in projectManagement" :key="list.name">
+                    <div class="flex justify-between mb-1">
+                      <span style="padding-bottom: 5px;" class="font-medium">{{ list.id }}. {{ list.name }}</span>
+                    </div>
+                  </div>
+              </div>
+            </div>
+            <!-- <div v-for="skill in technicalSkills" :key="skill.name">
               <div class="flex justify-between mb-1">
                 <span class="font-medium">{{ skill.name }}</span>
-                <!-- <span class="text-sm text-gray-500">{{ skill.level }}%</span> -->
+                <span class="text-sm text-gray-500">{{ skill.level }}%</span>
               </div>
-              <!-- <div class="w-full bg-gray-200 rounded-full h-2.5">
+              <div class="w-full bg-gray-200 rounded-full h-2.5">
                 <div class="progress-bar bg-blue-500 h-2.5 rounded-full" :style="{ width: skill.level + '%' }"></div>
-              </div> -->
-            </div>
+              </div>
+            </div> -->
           </div>
         </div>
         
         <div class="bg-black p-8 rounded-xl shadow-sm animate-fade-in delay-1">
-          <h3 class="text-xl font-bold mb-6 text-center header_color">Professional Skills</h3>
+          <h3 class="text-xl font-bold mb-6 text-center header_color">Professional Skills, Seminars and Certifications</h3>
           <div class="space-y-6">
-            <div v-for="skill in professionalSkills" :key="skill.name">
+             <div class="row">
+              <div class="col-md-12">
+                <h2 class="header_color" style="font-size: 18px; font-weight: bold;">Professional Skills</h2>
+              </div>
+              <div class="col-md-12">
+                <p style="text-align: justify;">Time management, Multitask within the job scope, Self-oriented, Can adjust and adapt to work environment, 
+                  Open and can deal with both verbal and non-verbal communications, physically and mentally healthy.</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <h2 class="header_color" style="font-size: 18px; font-weight: bold;">Seminars and Certifications</h2>
+              </div>
+              <div class="col-md-12">
+                  <div v-for="list in seminarsCertifications" :key="list.name">
+                    <div class="flex justify-between mb-1">
+                      <span style="padding-bottom: 5px;" class="font-medium">{{ list.id }}. {{ list.name }}</span>
+                    </div>
+                  </div>
+              </div>
+            </div>
+            <!-- <div v-for="skill in professionalSkills" :key="skill.name">
               <div class="flex justify-between mb-1">
                 <span class="font-medium">{{ skill.name }}</span>
-                <!-- <span class="text-sm text-gray-500">{{ skill.level }}%</span> -->
+                <span class="text-sm text-gray-500">{{ skill.level }}%</span>
               </div>
-              <!-- <div class="w-full bg-gray-200 rounded-full h-2.5">
+              <div class="w-full bg-gray-200 rounded-full h-2.5">
                 <div class="progress-bar bg-green-500 h-2.5 rounded-full" :style="{ width: skill.level + '%' }"></div>
-              </div> -->
-            </div>
+              </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -479,22 +536,31 @@
     createApp({
       setup() {
         const menuOpen = ref(false);
-        const technicalSkills = ref([
-          { name: 'Vue.js', level: 90 },
-          { name: 'React', level: 85 },
-          { name: 'JavaScript', level: 95 },
-          { name: 'HTML/CSS', level: 95 },
-          { name: 'Tailwind CSS', level: 85 },
-          { name: 'Git', level: 80 }
+        const frontEnd = ref([
+          { id: 1, name: 'HTML, CSS, TailwindCSS, Bootstrap, Other CDNs.' },
+          { id: 2, name: 'Javascript, VueJS and other Libraries.' },
         ]);
-        
-        const professionalSkills = ref([
-          { name: 'Communication', level: 90 },
-          { name: 'Teamwork', level: 95 },
-          { name: 'Problem Solving', level: 92 },
-          { name: 'Creativity', level: 88 },
-          { name: 'Time Management', level: 85 },
-          { name: 'Leadership', level: 80 }
+
+        const backEnd = ref([
+          { id: 1, name: 'PHP, Laravel, Javascript, and NodeJS.' },
+          { id: 2, name: 'APIs, SQL, and DynamoDB.' },
+        ]);
+
+        const projectManagement = ref([
+          { id: 1, name: 'Git/Github.' },
+          { id: 2, name: 'AWS (CodeCommit, EC2, S3, and CodeDeploy).' },
+          { id: 3, name: 'Docker (Project Virtual Container).' },
+          { id: 4, name: 'Jira (Ticket Management System).' },
+        ]);
+
+        const seminarsCertifications = ref([
+          { id: 1, name: 'AWS (Cloud Practitioner Essentials and Technical Essentials) Training/Seminar with certifications.' },
+          { id: 2, name: 'AWS AI Day 2025.' },
+          { id: 3, name: 'Santo Tomas Scholar 2019 - 2023.' },
+          { id: 4, name: "Dean's Lister and President's Lister 2020 - 2023."},
+          { id: 5, name: 'FAITH Psychology Society - Mental Health Awareness Week Celebration 2023.'},
+          { id: 6, name: 'iSite 2020 and 2022.' },
+          { id: 7, name: 'Role Model of the School Year 2017.' },
         ]);
 
         const logos = ref([
@@ -606,11 +672,13 @@
         
         return {
           menuOpen,
-          technicalSkills,
-          professionalSkills,
           projects,
           logos,
-          works
+          works,
+          seminarsCertifications,
+          frontEnd,
+          backEnd,
+          projectManagement
         };
       }
 
