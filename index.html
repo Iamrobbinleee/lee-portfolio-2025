@@ -6,7 +6,7 @@
   <title>Lee's Portfolio 2025</title>
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/x-icon" href="images/Lee-profile-2025.png">
+  <link rel="icon" type="image/x-icon" href="https://res.cloudinary.com/dyuan83wz/image/upload/Lee-profile-2025_caul9m.png">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     /* :root {
@@ -192,7 +192,7 @@
         </div>
         <div class="animate-fade-in delay-1 flex justify-center md:justify-end">
           <div class="relative w-64 h-64 sm:w-80 sm:h-80 rounded-full overflow-hidden border-4 border-black shadow-xl">
-            <img src="images/Lee-profile-2025.png" alt="Lee Robin Roxas Profile" class="w-full h-full object-cover" />
+            <img src="https://res.cloudinary.com/dyuan83wz/image/upload/Lee-profile-2025_caul9m.png" alt="Lee Robin Roxas Profile" class="w-full h-full object-cover" />
           </div>
         </div>
       </div>
@@ -216,6 +216,9 @@
             I am a full-stack web developer with 2 years experience in the industry. I am passionate and well-trained about designing, coding, testing, analyzing, making solutions, reports and modifying websites or systems to meet client specifications.
           </p>
           <p class="text-gray-200 text-justify mb-6">
+            I graduated at First Asia Institute of Technology and Humanities (FAITH Colleges) with Bachelor of Science in Information Technology located at Tanauan City, Batangas, Philippines. I love to play guitar, online games like mmorpg, strategic and collaborative games.
+          </p>
+          <p class="text-gray-200 text-justify mb-6">
             I seek to mold my expertise in terms of problem-solving skills, and proficiency in core materials used in creating systematical products. Also, to expand my knowledge and use it to contribute to the success and growth of your company as part of a dynamic and forward-thinking work environment.
           </p>
           <div class="grid grid-cols-2 gap-4 mb-6">
@@ -227,7 +230,7 @@
               </div>
               <div>
                 <h4 class="font-medium header_color">Professional Experience</h4>
-                <p class="text-sm text-white">2+ Years</p>
+                <p class="text-sm text-white">2+ Years.</p>
               </div>
             </div>
             
@@ -239,7 +242,7 @@
               </div>
               <div>
                 <h4 class="font-medium header_color">Front-end</h4>
-                <p class="text-sm text-white">TailwindCSS, VueJS, and Javascript.</p>
+                <p class="text-sm text-white">UI/UX design, templating and wireframing.</p>
               </div>
             </div>
             
@@ -251,7 +254,7 @@
               </div>
               <div>
                 <h4 class="font-medium header_color">Back-end</h4>
-                <p class="text-sm text-white">Laravel, PHP, NodeJS, Javascript, SQL, DynamoDB and APIs.</p>
+                <p class="text-sm text-white">Server-side data manipulation. Data requests and responses.</p>
               </div>
             </div>
             
@@ -263,7 +266,7 @@
               </div>
               <div>
                 <h4 class="font-medium header_color">Project Management</h4>
-                <p class="text-sm text-white">Git, AWS, Docker, and Jira.</p>
+                <p class="text-sm text-white">Data management, architechture and maintenance through cloud services.</p>
               </div>
             </div>
           </div>
@@ -366,7 +369,7 @@
             </div>
             <div class="row">
               <div class="col-md-12">
-                <h2 class="header_color" style="font-size: 18px; font-weight: bold;">Project Management</h2>
+                <h2 class="header_color" style="font-size: 18px; font-weight: bold;">Project Management and more</h2>
               </div>
               <div class="col-md-12">
                   <div v-for="list in projectManagement" :key="list.name">
@@ -547,10 +550,11 @@
         ]);
 
         const projectManagement = ref([
-          { id: 1, name: 'Git/Github.' },
+          { id: 1, name: 'Git/Github (Version Control).' },
           { id: 2, name: 'AWS (CodeCommit, EC2, S3, and CodeDeploy).' },
           { id: 3, name: 'Docker (Project Virtual Container).' },
           { id: 4, name: 'Jira (Ticket Management System).' },
+          { id: 5, name: 'Microsoft applications (Word, PPT, Excel), XAMPP, Laragon, Insomnia, Postman, VS Code, Sublime Merge, MySQL Workbench, PHPMyAdmin, Photoshop and Canva.' },
         ]);
 
         const seminarsCertifications = ref([
