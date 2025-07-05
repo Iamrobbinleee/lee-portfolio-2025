@@ -208,7 +208,9 @@
       
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div class="animate-fade-in delay-1">
-          <img src="https://images.pexels.com/photos/2014422/pexels-photo-2014422.jpeg" alt="Lee Robin Roxas Profile" class="rounded-xl shadow-md w-full" />
+          <img src="https://res.cloudinary.com/dyuan83wz/image/upload/Image_20250705_122820_x77qme.png" alt="Lee Robin Roxas Profile" class="rounded-xl shadow-md w-full" style="max-height: 100%; margin-bottom: -100px;"/>
+          <!-- <br>
+          <span style="color: white;">Code</span> -->
         </div>
         <div class="animate-fade-in delay-2">
           <h3 class="text-2xl font-bold mb-4 header_color">A Bit About Me</h3>
@@ -310,24 +312,29 @@
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
         <div v-for="(work, index) in works" :key="work.id" class="bg-white rounded-xl overflow-hidden shadow-md card-hover animate-fade-in" :class="'delay-' + (index % 3 + 1)">
           <div class="h-48 overflow-hidden">
-            <img :src="work.image" :alt="work.alt" class="w-full h-full object-cover" />
+            <img :src="work.image" :alt="work.alt" class="object-cover" style="max-width: 100%; max-height: 100%;"/>
           </div>
           <div class="p-6">
             <h3 class="text-xl text-black font-bold mb-2">{{ work.title }}</h3>
-            <p class="text-gray-600 mb-4">{{ work.description }}</p>
+            <p class="text-gray-600 mb-2">{{ work.location }}</p>
+            <p class="text-black mb-4" style="font-size: 12px; font-style: italic;">{{ work.date }}</p>
             <div class="flex flex-wrap gap-2 mb-4">
-              <span v-for="tag in work.tags" :key="tag" class="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">{{ tag }}</span>
+              <span class="px-2 py-1 bg-yellow-300 text-black text-xs rounded-full" style="font-size: 16px; font-weight: bold;">{{ work.job }}</span>
+            </div>
+            <p class="text-black mb-4" style="text-align: justify;">{{ work.description }}</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span v-for="tag in work.tags" :key="tag" class="px-2 py-1 bg-gray-200 text-black text-xs rounded-full">{{ tag }}</span>
             </div>
             <div class="flex justify-between">
-              <a :href="work.demoUrl" target="_blank" class="text-blue-500 hover:text-blue-700 font-medium">View Location</a>
-              <a :href="work.codeUrl" target="_blank" class="text-gray-500 hover:text-gray-700 font-medium">Check Company</a>
+              <a :href="work.companyLocation" target="_blank" class="text-blue-500 hover:text-blue-700 font-medium">View Location</a>
+              <a :href="work.companyUrl" target="_blank" class="text-gray-500 hover:text-gray-700 font-medium">Check Company</a>
             </div>
           </div>
         </div>
       </div>
       
       <div class="text-center mt-10 animate-fade-in delay-3">
-        <a href="#" class="inline-block px-6 py-3 border border-blue-500 text-blue-500 hover:bg-blue-50 font-medium rounded-lg transition duration-300">View All Works</a>
+        <!-- <a href="#" class="inline-block px-6 py-3 border border-blue-500 text-blue-500 hover:bg-blue-50 font-medium rounded-lg transition duration-300">View All Works</a> -->
       </div>
     </section>
     
@@ -437,10 +444,10 @@
         <div class="h-1 w-20 bg-gradient-to-r from-blue-500 to-green-500 mx-auto"></div>
       </div>
       
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
         <div v-for="(project, index) in projects" :key="project.id" class="bg-white rounded-xl overflow-hidden shadow-md card-hover animate-fade-in" :class="'delay-' + (index % 3 + 1)">
           <div class="h-48 overflow-hidden">
-            <img :src="project.image" :alt="project.alt" class="w-full h-full object-cover" />
+            <img :src="project.image" :alt="project.alt" class="object-cover"  style="width: 100%; max-height: 100%;"/>
           </div>
           <div class="p-6">
             <h3 class="text-xl text-black font-bold mb-2">{{ project.title }}</h3>
@@ -449,15 +456,16 @@
               <span v-for="tag in project.tags" :key="tag" class="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">{{ tag }}</span>
             </div>
             <div class="flex justify-between">
-              <a :href="project.demoUrl" target="_blank" class="text-blue-500 hover:text-blue-700 font-medium">Live Demo</a>
-              <a :href="project.codeUrl" target="_blank" class="text-gray-500 hover:text-gray-700 font-medium">View Code</a>
+              <a v-if="project.demoAvailable" :href="project.demoUrl" target="_blank" class="text-yellow-500 hover:text-blue-700 font-medium">Watch Demo</a>
+              <a v-else class="text-black font-medium">No Demo Available.</a>
+              <!-- <a :href="project.codeUrl" target="_blank" class="text-gray-500 hover:text-gray-700 font-medium">View Code</a> -->
             </div>
           </div>
         </div>
       </div>
       
       <div class="text-center mt-10 animate-fade-in delay-3">
-        <a href="#" class="inline-block px-6 py-3 border border-blue-500 text-blue-500 hover:bg-blue-50 font-medium rounded-lg transition duration-300">View All Projects</a>
+        <!-- <a href="#" class="inline-block px-6 py-3 border border-blue-500 text-blue-500 hover:bg-blue-50 font-medium rounded-lg transition duration-300">View All Projects</a> -->
       </div>
     </section>
     
@@ -529,7 +537,7 @@
           <!-- <a href="#contact" class="inline-block px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-lg transition duration-300 shadow-md">Contact Me</a> -->
         </div>
         <div class="animate-fade-in delay-1">
-          <img src="https://images.pexels.com/photos/2014422/pexels-photo-2014422.jpeg" alt="QR CODE" class="rounded-xl shadow-md w-full" style="max-height: 250px;" />
+          <img src="https://res.cloudinary.com/dyuan83wz/image/upload/eat_sleep_code_repeat_zewkub.jpg" alt="QR CODE" class="rounded-xl shadow-md w-full" style="max-height: 250px;" />
         </div>
       </div>
     </section>
@@ -588,33 +596,47 @@
         const projects = ref([
           {
             id: 1,
-            title: 'E-commerce Platform',
-            description: 'A full-featured online store with cart functionality and payment processing.',
-            tags: ['Vue.js', 'Firebase', 'Stripe'],
-            image: 'https://images.pexels.com/photos/2014422/pexels-photo-2014422.jpeg',
-            alt: 'Modern e-commerce website showcasing product listings and shopping cart',
+            title: 'Accessories Reservation System',
+            description: 'A Basic reservation system that allows the users to make an appointment with the client to manage transaction and marketing.',
+            tags: ['PHP', 'Javascript', 'MySQL'],
+            image: 'https://res.cloudinary.com/dyuan83wz/image/upload/Image_not_available_hlepma.png',
+            alt: 'Accessories Reservation System',
             demoUrl: '#',
-            codeUrl: '#'
+            codeUrl: '#',
+            demoAvailable: false,
           },
           {
             id: 2,
-            title: 'Task Management App',
-            description: 'Productivity application for tracking tasks with drag-and-drop functionality.',
-            tags: ['React', 'Redux', 'Node.js'],
-            image: 'https://images.pexels.com/photos/2014422/pexels-photo-2014422.jpeg',
-            alt: 'Task management dashboard with Kanban-style columns',
+            title: 'Recruitment Monitoring System integrated with SMS API and Analytical Reports',
+            description: 'A user tracking system which allows to manage user enrollment status. This system also integrates SMS API and data visualization and analytics.',
+            tags: ['Laravel', 'Javascript', 'MySQL'],
+            image: 'https://res.cloudinary.com/dyuan83wz/image/upload/CCITRACK_LOGO_LANDSCAPE_vbwnku.png',
+            alt: 'Recruitment Monitoring System integrated with SMS API and Analytical Reports',
             demoUrl: '#',
-            codeUrl: '#'
+            codeUrl: '#',
+            demoAvailable: true,
           },
           {
             id: 3,
-            title: 'Weather Dashboard',
-            description: 'Real-time weather forecasts with location detection and 5-day outlook.',
-            tags: ['Laravel', 'VueJS', 'NodeJS'],
-            image: 'https://images.pexels.com/photos/2014422/pexels-photo-2014422.jpeg',
-            alt: 'Junior Developer',
+            title: 'Diwa Dashboard SMS (School Management System).',
+            description: 'A school management system that allows the user to manage the data of students in terms of their enrollment statuses, finances and other transactions.',
+            tags: ['PHP', 'Javascript', 'MySQL'],
+            image: 'https://res.cloudinary.com/dyuan83wz/image/upload/DIWA_DASHBOARD_m1xsk5.png',
+            alt: 'Diwa Dashboard SMS (School Management System).',
             demoUrl: '#',
-            codeUrl: '#'
+            codeUrl: '#',
+            demoAvailable: false,
+          },
+          {
+            id: 4,
+            title: 'Diwa Checkbox LMS (Gamified Assessment Portal System).',
+            description: 'A learning management system which goal is to manage and monitor the learning of students. It have features including creation of tests and answering examinations for mastery, managing reports and data visualization.',
+            tags: ['Laravel', 'TailwindCSS', 'VueJS', 'Javascript', 'DynamoDB', 'MySQL', 'Redis'],
+            image: 'https://res.cloudinary.com/dyuan83wz/image/upload/DIWA_CHECKBOX_v1xkpz.png',
+            alt: 'Diwa Checkbox LMS (Gamified Assessment Portal System).',
+            demoUrl: '#',
+            codeUrl: '#',
+            demoAvailable: false,
           },
         ]);
 
@@ -623,22 +645,28 @@
           {
             id: 1,
             title: 'Diwa Learning Systems Inc.',
-            description: 'PDCP Centre, V.A. Rufino Cor. Salcedo Village, Makati City, Philippines.',
+            location: 'PDCP Centre, V.A. Rufino Cor. Salcedo Village, Makati City, Philippines.',
+            job: 'JUNIOR DEVELOPER',
+            date: 'July 24, 2023 - June 30, 2025.',
+            description: 'A Full-stack Web Developer (Laravel + VueJS) handling client-based projects. Making reports, analyzation, testing and solutions for the project objectives based on the client specifications. Daily/Weekly scrum, retrospective and sprint planning/meetings.',
             tags: ['Laravel', 'VueJS', 'NodeJS'],
-            image: 'https://images.pexels.com/photos/2014422/pexels-photo-2014422.jpeg',
+            image: 'https://res.cloudinary.com/dyuan83wz/image/upload/Diwa_Logo_2_ancg2h.jpg',
             alt: 'Junior Developer',
-            demoUrl: '#',
-            codeUrl: '#'
+            companyLocation: 'https://maps.app.goo.gl/sHxWyax1ef6nK7Dw7',
+            companyUrl: 'https://www.diwa.ph/'
           },
           {
             id: 2,
             title: 'Diwa Learning Systems Inc.',
-            description: 'PDCP Centre, V.A. Rufino Cor. Salcedo Village, Makati City, Philippines.',
+            location: 'PDCP Centre, V.A. Rufino Cor. Salcedo Village, Makati City, Philippines.',
+            job: 'WEB DEVELOPER INTERN',
+            date: 'February 13, 2023 - May 30, 2023.',
+            description: 'Trained and well-oriented on how to handle and develop web projects. Trained on how to create reports, how to deal with project concerns or issues, how to make solutions effectively and on how to communicate with other work mates. Handled one client-based project during the internship.',
             tags: ['PHP', 'Laravel', 'Javascript'],
-            image: 'https://images.pexels.com/photos/2014422/pexels-photo-2014422.jpeg',
+            image: 'https://res.cloudinary.com/dyuan83wz/image/upload/Diwa_Logo_2_ancg2h.jpg',
             alt: 'Junior Developer',
-            demoUrl: '#',
-            codeUrl: '#'
+            companyLocation: 'https://maps.app.goo.gl/sHxWyax1ef6nK7Dw7',
+            companyUrl: 'https://www.diwa.ph/'
           },
         ]);
         
