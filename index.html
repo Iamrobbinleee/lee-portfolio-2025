@@ -223,7 +223,7 @@
           <p class="text-gray-200 text-justify mb-6">
             I seek to mold my expertise in terms of problem-solving skills, and proficiency in core materials used in creating systematical products. Also, to expand my knowledge and use it to contribute to the success and growth of your company as part of a dynamic and forward-thinking work environment.
           </p>
-          <div class="grid grid-cols-2 gap-4 mb-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
             <div class="flex items-center">
               <div class="mr-3 p-2 bg-blue-50 rounded-lg">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -456,9 +456,9 @@
               <span v-for="tag in project.tags" :key="tag" class="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">{{ tag }}</span>
             </div>
             <div class="flex justify-between">
-              <a v-if="project.demoAvailable" :href="project.demoUrl" target="_blank" class="text-yellow-500 hover:text-blue-700 font-medium">Watch Demo</a>
+              <a v-if="project.demoAvailable" :href="project.demoUrl" target="_blank" class="text-yellow-500 hover:text-blue-700 font-medium">Watch Video</a>
               <a v-else class="text-black font-medium">No Demo Available.</a>
-              <!-- <a :href="project.codeUrl" target="_blank" class="text-gray-500 hover:text-gray-700 font-medium">View Code</a> -->
+              <!-- <a :href="project.docuUrl" target="_blank" class="text-gray-500 hover:text-gray-700 font-medium">Documentation</a> -->
             </div>
           </div>
         </div>
@@ -484,7 +484,7 @@
             Hey there, feel free to contact me for consultations, collaborations, project management and other tech related topics.
           </p>
           
-          <div class="grid grid-cols-2 gap-4 mb-6">
+          <div class="grid grid-cols-1 gap-4 mb-6 md:grid-cols-2">
             <div class="flex items-center">
               <div class="mr-3 p-2 bg-blue-50 rounded-lg">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -602,7 +602,7 @@
             image: 'https://res.cloudinary.com/dyuan83wz/image/upload/Image_not_available_hlepma.png',
             alt: 'Accessories Reservation System',
             demoUrl: '#',
-            codeUrl: '#',
+            docuUrl: '#',
             demoAvailable: false,
           },
           {
@@ -612,8 +612,8 @@
             tags: ['Laravel', 'Javascript', 'MySQL'],
             image: 'https://res.cloudinary.com/dyuan83wz/image/upload/CCITRACK_LOGO_LANDSCAPE_vbwnku.png',
             alt: 'Recruitment Monitoring System integrated with SMS API and Analytical Reports',
-            demoUrl: '#',
-            codeUrl: '#',
+            demoUrl: 'https://res.cloudinary.com/dyuan83wz/video/upload/v1751949562/CCITrack_Final_EP_Full_HD_1080p_vqbkds.mp4',
+            docuUrl: '#',
             demoAvailable: true,
           },
           {
@@ -624,7 +624,7 @@
             image: 'https://res.cloudinary.com/dyuan83wz/image/upload/DIWA_DASHBOARD_m1xsk5.png',
             alt: 'Diwa Dashboard SMS (School Management System).',
             demoUrl: '#',
-            codeUrl: '#',
+            docuUrl: '#',
             demoAvailable: false,
           },
           {
@@ -635,7 +635,7 @@
             image: 'https://res.cloudinary.com/dyuan83wz/image/upload/DIWA_CHECKBOX_v1xkpz.png',
             alt: 'Diwa Checkbox LMS (Gamified Assessment Portal System).',
             demoUrl: '#',
-            codeUrl: '#',
+            docuUrl: '#',
             demoAvailable: false,
           },
         ]);
