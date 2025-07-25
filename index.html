@@ -1,209 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Lee's Portfolio 2025</title>
+  
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/x-icon" href="https://res.cloudinary.com/dyuan83wz/image/upload/Lee-profile-2025_caul9m.png">
-  <script src="https://cdn.tailwindcss.com"></script>
+  
   <style>
-    /* :root {
-      --primary: #294d6b;
-      --secondary: #7ab3ca;
-      --accent: #000000;
-    } */
-
     :root {
+      --primary-color: #ffffff;
+      --secondary-color: #8338ec;
+      --dark-color: #000000;
+      --light-color: #f8f9fa;
+      --accent-color: #ff006e;
+      --text-dark: #333;
+      --text-light: #f8f9fa;
+      /* set two */
       --primary: #c0900c;
       --secondary: #af4829;
       --accent: #af4829;
     }
-    
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: #b3b3b3;
-      color: #ffffff;
-    }
-    
-    .gradient-text {
-      background: linear-gradient(90deg, var(--primary), var(--accent));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-    
-    .card-hover {
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    body { background-color: var(--light-color); color: var(--text-dark); line-height: 1.6; overflow-x: hidden; }
+    #app {
+      display: grid;
+      grid-template-columns: 250px 1fr 250px;
+      height: 100vh;
       transition: all 0.3s ease;
+      overflow: hidden;
     }
-    
-    .card-hover:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    #fabContainer {
+        z-index: 1000;
     }
-    
-    .nav-link {
-      position: relative;
+    #fabContainer .fab-child {
+        margin-top: 0.5rem;
     }
-    
-    .nav-link:after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: -2px;
-      left: 0;
-      background-color: var(--primary);
-      transition: width 0.3s ease;
+    .header_color{
+        color: #edbb2f;
     }
-    
-    .nav-link:hover:after {
-      width: 100%;
+    .left-section { background-color: var(--dark-color); color: var(--text-light); padding: 2rem; display: flex; flex-direction: column; align-items: center; position: relative; z-index: 10; box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1); }
+    .profile { text-align: center; margin-bottom: 2rem; }
+    .profile-img { margin-left: 15px; width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 5px solid var(--primary-color); margin-bottom: 1rem; transition: all 0.3s ease; }
+    .profile-img:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(255, 255, 255, 0.5); }
+    .sidebar-nav { margin-top: 2rem; width: 100%; margin-left: -20px; }
+    .sidebar-nav ul { list-style: none; }
+    .sidebar-nav li { margin-bottom: 1rem; }
+    .sidebar-nav a { color: var(--text-light); text-decoration: none; transition: all 0.3s ease; display: block; border-radius: 4px; position: relative; }
+    .sidebar-nav a.active { color: var(--primary-color); background-color: rgba(255,255,255,0.1); }
+    .sidebar-nav a.active::after { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--primary-color); }
+    .sidebar-nav a:hover { background-color: rgba(255,255,255,0.1); color: var(--primary-color); transform: translateX(5px); }
+    .nav-icon { margin-right: 10px; font-size: 1.2rem; }
+    .middle-section { padding: 2rem; background-color: white; overflow-y: auto; position: relative; height: 100vh; }
+    .section-title { color: var(--primary-color); margin-bottom: 1rem; position: relative; padding-bottom: 0.5rem; }
+    .section-title::after { content: ''; position: absolute; bottom: 0; left: 0; width: 50px; height: 3px; background: linear-gradient(to right, var(--primary-color), var(--secondary-color)); }
+    .about-text { margin-bottom: 2rem; }
+    .skills-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    .skill-item { background-color: var(--light-color); padding: 0.8rem; border-radius: 5px; display: flex; align-items: center; }
+    .skill-icon { margin-right: 10px; color: var(--primary-color); }
+    .projects-container { margin-top: 2rem; }
+    .project-card { background-color: var(--light-color); border-radius: 8px; padding: 1.5rem; margin-bottom: 1.5rem; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .project-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); }
+    .project-title { color: var(--dark-color); margin-bottom: 0.5rem; }
+    .project-links a { margin-right: 10px; color: var(--primary-color); text-decoration: none; transition: color 0.3s ease; }
+    .project-links a:hover { color: var(--secondary-color); }
+    .right-section { padding: 2rem; background-color: var(--dark-color); border-left: 1px solid #e1e1e1; }
+    .education-item, .experience-item { margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid #e1e1e1; }
+    .education-item:last-child, .experience-item:last-child { border-bottom: none; }
+    .education-title, .experience-title { font-weight: bold; margin-bottom: 0.3rem; }
+    .education-year, .experience-year { color: #666; font-size: 0.9rem; margin-bottom: 0.5rem; }
+    .social-links { display: flex; justify-content: space-around; margin-top: 2rem; }
+    .social-link { color: var(--dark-color); transition: color 0.3s ease; }
+    .social-link:hover { color: var(--primary-color); }
+    @media (max-width: 992px) { #app { grid-template-columns: 200px 1fr 200px; } }
+    @media (max-width: 768px) {
+      #app { grid-template-columns: 1fr; height: auto; overflow: visible; }
+      .left-section, .middle-section, .right-section { padding: 1.5rem; height: auto; position: static; }
+      .left-section { border-bottom: 1px solid #e1e1e1; }
+      .right-section { border-top: 1px solid #e1e1e1; }
     }
-    
-    .progress-bar {
-      transition: width 1.5s ease-in-out;
-    }
-    
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    .animate-fade-in {
-      animation: fadeIn 0.8s ease-out forwards;
-    }
-    
-    .delay-1 { animation-delay: 0.2s; }
-    .delay-2 { animation-delay: 0.4s; }
-    .delay-3 { animation-delay: 0.6s; }
-
-/* Marquee */
-@keyframes marquee {
-  0% { transform: translateX(0); }
-  25% { transform: translateX(-10%); }
-  50% { transform: translateX(0); }
-  75% { transform: translateX(10%); }
-  100% { transform: translateX(0); }
-}
-
-.animate-marquee {
-  animation: marquee 5s linear infinite;
-}
-
-.paused {
-  animation-play-state: paused;
-}
-
-#marquee_logo{
-    max-width: 55px;
-}
-
-/* for mobile */
-@media (max-width: 768px) {
-  #marquee_logo{
-    max-width: 20px;
-    margin-top: -40px;
-  }
-  #div_marquee_logo{
-    gap: 6px;
-  }
-}
-
-@media (max-width: 480px) {
-  #marquee_logo{
-    max-width: 20px;
-    margin-top: -40px;
-  }
-  #div_marquee_logo{
-    gap: 6px;
-  }
-}
-
-.header_color{
-    color: #edbb2f;
-}
-</style>
+    @media (max-width: 576px) { .skills-list { grid-template-columns: 1fr; } }
+  </style>
 </head>
+
 <body>
-  <div id="app">
-    <!-- Navigation -->
-    <nav class="fixed w-full bg-black/90 backdrop-blur-md z-50 shadow-sm">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16 items-center">
-          <div class="flex-shrink-0 flex items-center">
-            <!-- <div class="mr-3 p-2 bg-green-50 rounded-lg"> -->
-                <!-- <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 0c-.30206 0-.60438.09583-.85742.28906L.5957 8.34375c-.4705.3593-.66703.97346-.49218 1.53906l4.05664 13.1211c.1829.59168.7303.99609 1.3496.99609h12.98047c.61931 0 1.1667-.40441 1.34961-.9961l4.05664-13.12109c.17485-.5656-.02168-1.17975-.49218-1.53906l-.97266-.74219-1.11914 3.51758-3.07031 9.99024c-.12005.3903-.48032.65624-.88868.65624H6.57813c-.40836 0-.76863-.26593-.88868-.65624l-3.36132-10.9336c-.11419-.37133.01411-.77514.32226-1.01172l8.74805-6.7168a.93.93 0 0 1 .10937-.07226L13.55273.82031l-.6953-.53125C12.60437.09583 12.30205 0 12 0m.06836 4.75781c-.16254 0-.32493.05197-.46094.15625l-6.52344 5.0039c-.25142.19277-.35688.52145-.26367.82423l.4336 1.4082 2.19726-1.61914 4.31445-3.37695c.13717-.10727.33159-.10727.46875 0l4.70508 3.68164c.12315.09628.17407.25661.1289.40625l-1.80858 5.99219c-.0483.15993-.19619.26953-.36329.26953H9.10352a.377.377 0 0 1-.07618-.0078H6.9004l.42774 1.39257c.0979.3179.39196.53516.7246.53516h8.0332c.33265 0 .62477-.21725.72266-.53516l2.50977-8.14648c.09321-.30278-.01225-.63146-.26367-.82422l-6.5254-5.00392c-.136-.10428-.29839-.15625-.46093-.15625Z" />
-                </svg> -->
-                <!-- <img src="https://cdn.simpleicons.org/vue.js/2a6933" class="h-6 w-6" alt=""> -->
-            <!-- </div> -->
-            <a href="#home"><h2 style="font-size: 30px;">☕︎</h2></a>
-          </div>
-          <div class="hidden md:block">
-            <div class="ml-10 flex items-center space-x-8">
-              <a href="#home" class="nav-link text-white hover:text-yellow-600 font-medium">Home</a>
-              <a href="#about" class="nav-link text-white hover:text-yellow-600 font-medium">About</a>
-              <a href="#works" class="nav-link text-white hover:text-yellow-600 font-medium">Works</a>
-              <a href="#skills" class="nav-link text-white hover:text-yellow-600 font-medium">Skills</a>
-              <a href="#projects" class="nav-link text-white hover:text-yellow-600 font-medium">Projects</a>
-              <a href="#contact" class="nav-link text-white hover:text-yellow-600 font-medium">Contact</a>
-            </div>
-          </div>
-          <div class="-mr-2 flex md:hidden">
-            <button @click="menuOpen = !menuOpen" class="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-white focus:outline-none">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            </button>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Mobile menu -->
-      <div v-if="menuOpen" class="md:hidden bg-black shadow-lg">
-        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-          <a href="#home" @click="menuOpen = false" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-yellow-600 hover:bg-white">Home</a>
-          <a href="#about" @click="menuOpen = false" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-yellow-600 hover:bg-white">About</a>
-          <a href="#works" @click="menuOpen = false" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-yellow-600 hover:bg-white">Works</a>
-          <a href="#skills" @click="menuOpen = false" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-yellow-600 hover:bg-white">Skills</a>
-          <a href="#projects" @click="menuOpen = false" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-yellow-600 hover:bg-white">Projects</a>
-          <a href="#contact" @click="menuOpen = false" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-yellow-600 hover:bg-white">Contact</a>
-        </div>
-      </div>
+<div id="app">
+  <!-- Left Section -->
+  <div class="left-section">
+    <div class="profile">
+      <img src="https://res.cloudinary.com/dyuan83wz/image/upload/v1751684497/Lee-profile-2025_caul9m.png" alt="Profile" class="profile-img">
+      <h2 style="font-size: 22px; font-weight: bolder; margin-bottom: 10px;">LEE ROBIN ROXAS</h2>
+      <p style="font-size: 16px; font-style: italic;">Full-Stack Web Developer</p>
+    </div>
+    <nav class="sidebar-nav d-none d-md-block">
+      <ul>
+        <li v-for="navItem in navItems" :key="navItem.label">
+          <a :href="'#' + navItem.target" @click.prevent="smoothScroll(navItem.target)">
+            <span class="nav-icon">{{ navItem.icon }}</span>{{ navItem.label }}
+          </a>
+        </li>
+      </ul>
     </nav>
-    
-    <!-- Hero Section -->
-    <section id="home" class="pt-24 pb-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-        <div class="animate-fade-in">
-          <h1 class="text-4xl sm:text-5xl md:text-6xl text-black font-bold mb-4 leading-tight">
-            Hi, I'm <span class="gradient-text" style="font-size: 50px;"><br>LEE ROBIN ROXAS</span>
-          </h1>
-          <h2 class="text-2xl sm:text-3xl text-black mb-6">A Full-Stack Web Developer</h2>
-          <p class="text-black mb-8 max-w-lg">
-            Let’s work together and make everything possible!
-          </p>
-          <div class="flex flex-wrap gap-3">
-            <a href="#contact" class="px-6 py-3 bg-black hover:bg-white text-white hover:text-black font-medium rounded-lg transition duration-300 shadow-md">Get in Touch</a>
-            <a href="#projects" class="px-6 py-3 border border-white hover:border-black text-white hover:text-black font-medium rounded-lg transition duration-300">View Projects</a>
-          </div>
-        </div>
-        <div class="animate-fade-in delay-1 flex justify-center md:justify-end">
-          <div class="relative w-64 h-64 sm:w-80 sm:h-80 rounded-full overflow-hidden border-4 border-black shadow-xl">
-            <img src="https://res.cloudinary.com/dyuan83wz/image/upload/Lee-profile-2025_caul9m.png" alt="Lee Robin Roxas Profile" class="w-full h-full object-cover" />
-          </div>
-        </div>
-      </div>
-    </section>
-    
-    <!-- About Section -->
-    <section id="about" class="py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto bg-black rounded-xl shadow-sm mt-8">
+  </div>
+
+  <!-- Middle Section -->
+  <div class="middle-section">
+    <!-- About -->
+    <section id="about" class="py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto bg-black rounded-xl shadow-sm mt-2">
       <div class="text-center mb-12">
         <!-- <span class="inline-block py-1 px-3 rounded-full bg-blue-50 text-blue-500 text-sm font-medium mb-2">ABOUT ME</span> -->
-        <h2 class="text-3xl sm:text-4xl font-bold mb-4">Profile Summary</h2>
-        <div class="h-1 w-20 bg-gradient-to-r from-blue-500 to-green-500 mx-auto"></div>
+        <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-white">Profile Summary</h2>
       </div>
       
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -278,35 +190,11 @@
       </div>
     </section>
 
-    <!-- Marquee -->
-    <!-- <section class="py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto bg-white rounded-xl shadow-sm mt-8" id="section_marquee_logo" style="border-radius: 20px;"> -->
-        <!-- <div
-            class="flex animate-marquee gap-20 w-max"
-            @mouseover="pause = true"
-            @mouseleave="pause = false"
-            :class="{ 'paused': pause }"
-        > -->
-        <center>
-            <section class="flex animate-marquee gap-10 w-max mt-10" id="div_marquee_logo">
-                <img
-                v-for="(logo, index) in logos"
-                :key="index"
-                :src="logo"
-                alt="logo"
-                class="h-16 w-auto object-contain"
-                id="marquee_logo"
-                />
-            </section>
-        </center>
-    <!-- </section> -->
-    <!-- End Marquee -->
-
-    <!-- Works Section -->
+    <!-- works -->
     <section id="works" class="py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto bg-black rounded-xl mt-12">
       <div class="text-center mb-12">
         <!-- <span class="inline-block py-1 px-3 rounded-full bg-blue-50 text-blue-500 text-sm font-medium mb-2">PORTFOLIO</span> -->
-        <h2 class="text-3xl sm:text-4xl font-bold mb-4">Work Experiences</h2>
-        <div class="h-1 w-20 bg-gradient-to-r from-blue-500 to-green-500 mx-auto"></div>
+        <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-white">Work Experiences</h2>
       </div>
       
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
@@ -337,13 +225,13 @@
         <!-- <a href="#" class="inline-block px-6 py-3 border border-blue-500 text-blue-500 hover:bg-blue-50 font-medium rounded-lg transition duration-300">View All Works</a> -->
       </div>
     </section>
-    
+
     <!-- Skills Section -->
     <section id="skills" class="py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
       <div class="text-center mb-12">
         <!-- <span class="inline-block py-1 px-3 rounded-full bg-blue-50 text-blue-500 text-sm font-medium mb-2">SKILLS</span> -->
-        <h2 class="text-3xl sm:text-4xl font-bold mb-4">My Expertise</h2>
-        <div class="h-1 w-20 bg-gradient-to-r from-blue-500 to-green-500 mx-auto"></div>
+        <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-black">My Expertise</h2>
+        <!-- <div class="h-1 w-20 bg-gradient-to-r from-blue-500 to-green-500 mx-auto"></div> -->
       </div>
       
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -357,7 +245,7 @@
               <div class="col-md-12">
                   <div v-for="list in frontEnd" :key="list.name">
                     <div class="flex justify-between mb-1">
-                      <span style="padding-bottom: 5px;" class="font-medium">{{ list.id }}. {{ list.name }}</span>
+                      <span style="padding-bottom: 5px;" class="font-medium text-white">{{ list.id }}. {{ list.name }}</span>
                     </div>
                   </div>
               </div>
@@ -369,7 +257,7 @@
               <div class="col-md-12">
                   <div v-for="list in backEnd" :key="list.name">
                     <div class="flex justify-between mb-1">
-                      <span style="padding-bottom: 5px;" class="font-medium">{{ list.id }}. {{ list.name }}</span>
+                      <span style="padding-bottom: 5px;" class="font-medium text-white">{{ list.id }}. {{ list.name }}</span>
                     </div>
                   </div>
                 </div>
@@ -381,20 +269,11 @@
               <div class="col-md-12">
                   <div v-for="list in projectManagement" :key="list.name">
                     <div class="flex justify-between mb-1">
-                      <span style="padding-bottom: 5px;" class="font-medium">{{ list.id }}. {{ list.name }}</span>
+                      <span style="padding-bottom: 5px;" class="font-medium text-white">{{ list.id }}. {{ list.name }}</span>
                     </div>
                   </div>
               </div>
             </div>
-            <!-- <div v-for="skill in technicalSkills" :key="skill.name">
-              <div class="flex justify-between mb-1">
-                <span class="font-medium">{{ skill.name }}</span>
-                <span class="text-sm text-gray-500">{{ skill.level }}%</span>
-              </div>
-              <div class="w-full bg-gray-200 rounded-full h-2.5">
-                <div class="progress-bar bg-blue-500 h-2.5 rounded-full" :style="{ width: skill.level + '%' }"></div>
-              </div>
-            </div> -->
           </div>
         </div>
         
@@ -405,7 +284,7 @@
               <div class="col-md-12">
                 <h2 class="header_color" style="font-size: 18px; font-weight: bold;">Professional Skills</h2>
               </div>
-              <div class="col-md-12">
+              <div class="col-md-12 text-white">
                 <p style="text-align: justify;">Time management, Multitask within the job scope, Self-oriented, Can adjust and adapt to work environment, 
                   Open and can deal with both verbal and non-verbal communications, physically and mentally healthy.</p>
               </div>
@@ -417,31 +296,21 @@
               <div class="col-md-12">
                   <div v-for="list in seminarsCertifications" :key="list.name">
                     <div class="flex justify-between mb-1">
-                      <span style="padding-bottom: 5px;" class="font-medium">{{ list.id }}. {{ list.name }}</span>
+                      <span style="padding-bottom: 5px;" class="font-medium text-white">{{ list.id }}. {{ list.name }}</span>
                     </div>
                   </div>
               </div>
             </div>
-            <!-- <div v-for="skill in professionalSkills" :key="skill.name">
-              <div class="flex justify-between mb-1">
-                <span class="font-medium">{{ skill.name }}</span>
-                <span class="text-sm text-gray-500">{{ skill.level }}%</span>
-              </div>
-              <div class="w-full bg-gray-200 rounded-full h-2.5">
-                <div class="progress-bar bg-green-500 h-2.5 rounded-full" :style="{ width: skill.level + '%' }"></div>
-              </div>
-            </div> -->
           </div>
         </div>
       </div>
     </section>
-    
+
     <!-- Projects Section -->
     <section id="projects" class="py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto bg-black rounded-xl mt-12">
       <div class="text-center mb-12">
         <!-- <span class="inline-block py-1 px-3 rounded-full bg-blue-50 text-blue-500 text-sm font-medium mb-2">PORTFOLIO</span> -->
-        <h2 class="text-3xl sm:text-4xl font-bold mb-4">Projects and Development</h2>
-        <div class="h-1 w-20 bg-gradient-to-r from-blue-500 to-green-500 mx-auto"></div>
+        <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-white">Projects and Development</h2>
       </div>
       
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
@@ -468,18 +337,17 @@
         <!-- <a href="#" class="inline-block px-6 py-3 border border-blue-500 text-blue-500 hover:bg-blue-50 font-medium rounded-lg transition duration-300">View All Projects</a> -->
       </div>
     </section>
-    
+
     <!-- Contact Section -->
     <section id="contact" class="py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto bg-black rounded-xl shadow-sm mt-8">
       <div class="text-center mb-12">
         <!-- <span class="inline-block py-1 px-3 rounded-full bg-blue-50 text-blue-500 text-sm font-medium mb-2">Contact Me</span> -->
-        <h2 class="text-3xl sm:text-4xl font-bold mb-4">Get In Touch</h2>
-        <div class="h-1 w-20 bg-gradient-to-r from-blue-500 to-green-500 mx-auto"></div>
+        <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-white">Get In Touch</h2>
       </div>
       
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div class="animate-fade-in delay-2">
-          <h3 class="text-2xl font-bold mb-4">Contact Information</h3>
+          <h3 class="text-2xl font-bold mb-4 header_color">Contact Information</h3>
           <p class="text-white mb-6">
             Hey there, feel free to contact me for consultations, collaborations, project management and other tech related topics.
           </p>
@@ -492,7 +360,7 @@
                 </svg>
               </div>
               <div>
-                <h4 class="font-medium">Contact Number</h4>
+                <h4 class="font-medium header_color">Contact Number</h4>
                 <p class="text-sm text-white">0976-006-9290 (Globe) | 0999-568-7533 (Smart)</p>
               </div>
             </div>
@@ -504,7 +372,7 @@
                 </svg>
               </div>
               <div>
-                <h4 class="font-medium">Viber</h4>
+                <h4 class="font-medium header_color">Viber</h4>
                 <p class="text-sm text-white">0976-006-9290</p>
               </div>
             </div>
@@ -516,7 +384,7 @@
                 </svg>
               </div>
               <div>
-                <h4 class="font-medium">Email</h4>
+                <h4 class="font-medium header_color">Email</h4>
                 <p class="text-sm text-white">leerobinroxas8@gmail.com</p>
               </div>
             </div>
@@ -528,7 +396,7 @@
                 </svg>
               </div>
               <div>
-                <h4 class="font-medium">Address</h4>
+                <h4 class="font-medium header_color">Address</h4>
                 <p class="text-sm text-white">Santo Tomas, Batangas, Philippines.</p>
               </div>
             </div>
@@ -541,59 +409,133 @@
         </div>
       </div>
     </section>
+  </div>
+
+  <!-- Right Section -->
+  <div class="right-section">
+    <section id="">
+        <div class="row">
+            <div class="col-4" v-for="(logo, index) in logos" :key="index">
+                <center><img
+                :src="logo"
+                alt="logo"
+                class="h-16 w-auto object-contain"
+                /></center>
+            </div>
+        </div>
+    </section>
+    <br><br>
+    <section>
+        <div>
+            <h2 class="text-header" style="font-size: 20px; font-weight: bolder; text-align: center; color: white;">Let's work together and make everything possible!</h2>
+        </div>
+    </section>
+  </div>
+
+    <!-- Floating Action Button -->
+    <div id="fabContainer" class="d-flex d-md-none flex-column align-items-end position-fixed bottom-0 end-0 p-3">
+    <a
+        v-for="navItem in navItems"
+        :key="navItem.label"
+        class="btn btn-light rounded-circle mb-2 fab-child d-none"
+        :href="'#' + navItem.target"
+        style="width: 60px; height: 60px; padding-top: 10px; border: 3px solid black; font-size: 20px;"
+        @click.prevent="smoothScroll(navItem.target)"
+    >
+        <span>{{ navItem.icon }}</span>
+    </a>
+
+    <button id="mainFab" class="btn rounded-circle text-white" style="width: 60px; height: 60px; font-size: 20px; background-color: black; border: 3px solid white;">
+        ☰
+    </button>
+    </div>
+</div>
+
 <script>
-    const { createApp, ref, onMounted } = Vue;
-    
-    createApp({
-      setup() {
-        const menuOpen = ref(false);
-        const frontEnd = ref([
-          { id: 1, name: 'HTML, CSS, TailwindCSS, Bootstrap, Other CDNs.' },
-          { id: 2, name: 'Javascript, VueJS and other Libraries.' },
-        ]);
+const { createApp, ref, onMounted } = Vue;
 
-        const backEnd = ref([
-          { id: 1, name: 'PHP, Laravel, Javascript, and NodeJS.' },
-          { id: 2, name: 'APIs, SQL, and DynamoDB.' },
-        ]);
+createApp({
+  setup() {
+    const skills = ref([
+      { name: 'Vue.js', icon: '⚙️' },
+      { name: 'JavaScript', icon: '📜' },
+      { name: 'HTML/CSS', icon: '🖥️' },
+      { name: 'Node.js', icon: '⬢' },
+      { name: 'REST APIs', icon: '🔗' },
+      { name: 'Git', icon: '🐙' }
+    ]);
 
-        const projectManagement = ref([
-          { id: 1, name: 'Git/Github (Version Control).' },
-          { id: 2, name: 'AWS (CodeCommit, EC2, S3, and CodeDeploy).' },
-          { id: 3, name: 'Docker (Project Virtual Container).' },
-          { id: 4, name: 'Jira (Ticket Management System).' },
-          { id: 5, name: 'Microsoft applications (Word, PPT, Excel), XAMPP, Laragon, Insomnia, Postman, VS Code, Sublime Merge, MySQL Workbench, PHPMyAdmin, Photoshop and Canva.' },
-        ]);
+    const education = ref([
+      { degree: 'M.S. Computer Science', institution: 'Stanford University', year: '2015 - 2017' }
+    ]);
 
-        const seminarsCertifications = ref([
-          { id: 1, name: 'AWS (Cloud Practitioner Essentials and Technical Essentials) Training/Seminar with certifications.' },
-          { id: 2, name: 'AWS AI Day 2025.' },
-          { id: 3, name: 'Santo Tomas Scholar 2019 - 2023.' },
-          { id: 4, name: "Dean's Lister and President's Lister 2020 - 2023."},
-          { id: 5, name: 'FAITH Psychology Society - Mental Health Awareness Week Celebration 2023.'},
-          { id: 6, name: 'iSite 2020 and 2022.' },
-          { id: 7, name: 'Role Model of the School Year 2017.' },
-        ]);
+    const experience = ref([
+      { position: 'Senior Frontend Developer', company: 'TechCorp', year: '2019 - Present', description: 'Leading Vue projects.' }
+    ]);
 
-        const logos = ref([
-            'https://cdn.simpleicons.org/github/000000',
-            'https://cdn.simpleicons.org/git/cc781f',
-            'https://cdn.simpleicons.org/jira/3878d1',
-            'https://cdn.simpleicons.org/postman/cc781f',
-            'https://cdn.simpleicons.org/sublimetext/e0aa22',
-            'https://cdn.simpleicons.org/mysql/000000',
-            'https://cdn.simpleicons.org/laragon/489cab',
-            'https://cdn.simpleicons.org/canva/2e9db0',
-            'https://cdn.simpleicons.org/node.js/2a6933',
-            'https://cdn.simpleicons.org/laravel/b03f2e',  
-            'https://cdn.simpleicons.org/php/777BB4',  
-            'https://cdn.simpleicons.org/vue.js/2a6933',  
-            'https://cdn.simpleicons.org/docker/489cab',
-            'images/AWS_Logo.png',
-            'https://cdn.simpleicons.org/tailwindcss/34c9eb',
-        ]);
-        
-        const projects = ref([
+    const socialLinks = ref([
+      { name: 'GitHub', url: 'https://github.com', icon: '🐱' },
+      { name: 'LinkedIn', url: 'https://linkedin.com', icon: '💼' }
+    ]);
+
+    const works = ref([
+          {
+            id: 1,
+            title: 'Diwa Learning Systems Inc.',
+            location: 'PDCP Centre, V.A. Rufino Cor. Salcedo Village, Makati City, Philippines.',
+            job: 'JUNIOR DEVELOPER',
+            date: 'July 24, 2023 - June 30, 2025.',
+            description: 'A Full-stack Web Developer (Laravel + VueJS) handling client-based projects. Making reports, analyzation, testing and solutions for the project objectives based on the client specifications. Daily/Weekly scrum, retrospective and sprint planning/meetings.',
+            tags: ['Laravel', 'VueJS', 'NodeJS'],
+            image: 'https://res.cloudinary.com/dyuan83wz/image/upload/Diwa_Logo_2_ancg2h.jpg',
+            alt: 'Junior Developer',
+            companyLocation: 'https://maps.app.goo.gl/sHxWyax1ef6nK7Dw7',
+            companyUrl: 'https://www.diwa.ph/'
+          },
+          {
+            id: 2,
+            title: 'Diwa Learning Systems Inc.',
+            location: 'PDCP Centre, V.A. Rufino Cor. Salcedo Village, Makati City, Philippines.',
+            job: 'WEB DEVELOPER INTERN',
+            date: 'February 13, 2023 - May 30, 2023.',
+            description: 'Trained and well-oriented on how to handle and develop web projects. Trained on how to create reports, how to deal with project concerns or issues, how to make solutions effectively and on how to communicate with other work mates. Handled one client-based project during the internship.',
+            tags: ['PHP', 'Laravel', 'Javascript'],
+            image: 'https://res.cloudinary.com/dyuan83wz/image/upload/Diwa_Logo_2_ancg2h.jpg',
+            alt: 'Junior Developer',
+            companyLocation: 'https://maps.app.goo.gl/sHxWyax1ef6nK7Dw7',
+            companyUrl: 'https://www.diwa.ph/'
+          },
+    ]);
+
+    const frontEnd = ref([
+        { id: 1, name: 'HTML, CSS, TailwindCSS, Bootstrap, Other CDNs.' },
+        { id: 2, name: 'Javascript, VueJS and other Libraries.' },
+    ]);
+
+    const backEnd = ref([
+        { id: 1, name: 'PHP, Laravel, Javascript, and NodeJS.' },
+        { id: 2, name: 'APIs, SQL, and DynamoDB.' },
+    ]);
+
+    const projectManagement = ref([
+        { id: 1, name: 'Git/Github (Version Control).' },
+        { id: 2, name: 'AWS (CodeCommit, EC2, S3, and CodeDeploy).' },
+        { id: 3, name: 'Docker (Project Virtual Container).' },
+        { id: 4, name: 'Jira (Ticket Management System).' },
+        { id: 5, name: 'Microsoft applications (Word, PPT, Excel), XAMPP, Laragon, Insomnia, Postman, VS Code, Sublime Merge, MySQL Workbench, PHPMyAdmin, Photoshop and Canva.' },
+    ]);
+
+    const seminarsCertifications = ref([
+        { id: 1, name: 'AWS (Cloud Practitioner Essentials and Technical Essentials) Training/Seminar with certifications.' },
+        { id: 2, name: 'AWS AI Day 2025.' },
+        { id: 3, name: 'Santo Tomas Scholar 2019 - 2023.' },
+        { id: 4, name: "Dean's Lister and President's Lister 2020 - 2023."},
+        { id: 5, name: 'FAITH Psychology Society - Mental Health Awareness Week Celebration 2023.'},
+        { id: 6, name: 'iSite 2020 and 2022.' },
+        { id: 7, name: 'Role Model of the School Year 2017.' },
+    ]);
+
+    const projects = ref([
           {
             id: 1,
             title: 'Accessories Reservation System',
@@ -638,85 +580,62 @@
             docuUrl: '#',
             demoAvailable: false,
           },
-        ]);
+    ]);
 
-        //Works
-        const works = ref([
-          {
-            id: 1,
-            title: 'Diwa Learning Systems Inc.',
-            location: 'PDCP Centre, V.A. Rufino Cor. Salcedo Village, Makati City, Philippines.',
-            job: 'JUNIOR DEVELOPER',
-            date: 'July 24, 2023 - June 30, 2025.',
-            description: 'A Full-stack Web Developer (Laravel + VueJS) handling client-based projects. Making reports, analyzation, testing and solutions for the project objectives based on the client specifications. Daily/Weekly scrum, retrospective and sprint planning/meetings.',
-            tags: ['Laravel', 'VueJS', 'NodeJS'],
-            image: 'https://res.cloudinary.com/dyuan83wz/image/upload/Diwa_Logo_2_ancg2h.jpg',
-            alt: 'Junior Developer',
-            companyLocation: 'https://maps.app.goo.gl/sHxWyax1ef6nK7Dw7',
-            companyUrl: 'https://www.diwa.ph/'
-          },
-          {
-            id: 2,
-            title: 'Diwa Learning Systems Inc.',
-            location: 'PDCP Centre, V.A. Rufino Cor. Salcedo Village, Makati City, Philippines.',
-            job: 'WEB DEVELOPER INTERN',
-            date: 'February 13, 2023 - May 30, 2023.',
-            description: 'Trained and well-oriented on how to handle and develop web projects. Trained on how to create reports, how to deal with project concerns or issues, how to make solutions effectively and on how to communicate with other work mates. Handled one client-based project during the internship.',
-            tags: ['PHP', 'Laravel', 'Javascript'],
-            image: 'https://res.cloudinary.com/dyuan83wz/image/upload/Diwa_Logo_2_ancg2h.jpg',
-            alt: 'Junior Developer',
-            companyLocation: 'https://maps.app.goo.gl/sHxWyax1ef6nK7Dw7',
-            companyUrl: 'https://www.diwa.ph/'
-          },
-        ]);
-        
-        // Animate progress bars on scroll
-        onMounted(() => {
-          // Smooth scroll for navigation links
-          document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-              e.preventDefault();
-              menuOpen.value = false;
-              
-              document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-              });
-            });
-          });
-          
-          // Animate progress bars when skills section comes into view
-          const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-              if (entry.isIntersecting) {
-                document.querySelectorAll('.progress-bar').forEach(bar => {
-                  // Width is already set via inline style in the template
-                });
-                observer.unobserve(entry.target);
-              }
-            });
-          }, { threshold: 0.5 });
-          
-          const skillsSection = document.getElementById('skills');
-          if (skillsSection) {
-            observer.observe(skillsSection);
-          }
+    const navItems = ref([
+      { label: 'About Me', target: 'about', icon: '👨🏻‍💻' },
+      { label: 'Works', target: 'works', icon: '💼' },
+      { label: 'Skills', target: 'skills', icon: '🌟' },
+      { label: 'Projects', target: 'projects', icon: '🗂️' },
+      { label: 'Contact', target: 'contact', icon: '📞' }
+    ]);
+
+    const logos = ref([
+        'https://cdn.simpleicons.org/github/ffffff',
+        'https://cdn.simpleicons.org/git/cc781f',
+        'https://cdn.simpleicons.org/jira/3878d1',
+        'https://cdn.simpleicons.org/postman/cc781f',
+        'https://cdn.simpleicons.org/sublimetext/e0aa22',
+        'https://cdn.simpleicons.org/mysql/ffffff',
+        'https://cdn.simpleicons.org/laragon/489cab',
+        'https://cdn.simpleicons.org/canva/2e9db0',
+        'https://cdn.simpleicons.org/node.js/2a6933',
+        'https://cdn.simpleicons.org/laravel/b03f2e',  
+        'https://cdn.simpleicons.org/php/777BB4',  
+        'https://cdn.simpleicons.org/vue.js/2a6933',  
+        'https://cdn.simpleicons.org/docker/489cab',
+        'images/AWS_Logo.png',
+        'https://cdn.simpleicons.org/tailwindcss/34c9eb',
+    ]);
+
+    const smoothScroll = (id) => {
+      const element = document.getElementById(id);
+      if (element) element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+
+    onMounted(() => {
+      const mainFab = document.getElementById('mainFab');
+      const fabChildren = document.querySelectorAll('#fabContainer .fab-child');
+
+      let isOpen = false;
+
+      const toggleFab = () => {
+        isOpen = !isOpen;
+        fabChildren.forEach(btn => btn.classList.toggle('d-none', !isOpen));
+      };
+
+      mainFab.addEventListener('click', toggleFab);
+
+      fabChildren.forEach(btn => {
+        btn.addEventListener('click', () => {
+          toggleFab();
         });
-        
-        return {
-          menuOpen,
-          projects,
-          logos,
-          works,
-          seminarsCertifications,
-          frontEnd,
-          backEnd,
-          projectManagement
-        };
-      }
+      });
+    });
 
-    // Marquee
-    
-    }).mount('#app');
-  </script>
+    return { skills, projects, education, experience, socialLinks, navItems, works, frontEnd, backEnd, seminarsCertifications, projectManagement, logos, smoothScroll };
+  }
+}).mount('#app');
+</script>
 </body>
 </html>
